@@ -51,6 +51,12 @@ const LoginForm = ( { history }) => {
         if(user) {
             //user Data success response
             history.push('/');
+            try {
+                localStorage.setItem('user', JSON.stringify(user));
+            }
+            catch(e) {
+                console.log(e);
+            }
         }
     }, [user, history]);
 
