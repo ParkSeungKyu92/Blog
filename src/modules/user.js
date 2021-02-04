@@ -13,10 +13,20 @@ export const tempSetUser = createAction(TEMP_SET_USER);
 export const check = createAction(CHECK);
 
 
+function checkFailureSaga() {
+    try {
+        localStorage.removeItem('user');
+    }
+    catch(e) {
+        console.log(e);
+    }
+}
+
 //Redux-Saga MiddleWare
 const checkSaga = createRequestSaga(CHECK, authAPI.check);
 export function* userSaga() {
     yield takeLatest(CHECK, checkSaga);
+    yield takeLatest(CHECK_FAILURE, checkFailureSaga);
 }
 
 //Initail value
