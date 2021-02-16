@@ -9,7 +9,7 @@ export const INITIALIZE = 'write/INITIALIZE';
 export const CHANGE_FIELD = 'write/CHANGE_FIELD';
 
 export const initialize = createAction(INITIALIZE);
-export const chagneField = createAction(CHANGE_FIELD, ({key, value}) => ( {key, value}));
+export const changeField = createAction(CHANGE_FIELD, ({key, value}) => ( {key, value}));
 
 const initialState = {
     title : '',
