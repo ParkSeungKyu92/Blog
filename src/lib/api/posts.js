@@ -5,5 +5,5 @@ export const writePost = ({ title, body, tags}) => {
 }
 
 export const readPost = (id) => {
-    return client.get(`/api/post/${id}`);
+    return client.get(`/api/posts/${id}`);
 }
