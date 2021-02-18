@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '../../components/common/Button';
 import Responsive from '../../components/common/Responsive';
+import SubInfo from '../../components/common/SubInfo';
+import Tags from '../../components/common/Tags';
 import palette from '../../lib/styles/palette';
 
 
@@ -43,46 +45,12 @@ const PostItemBlock = styled.div`
     }
 `;
 
-const SubInfo = styled.div`
-    color : ${palette.gray[6]};
-
-    /* Span 사이의 가운뎃점 문자 보여주기*/
-
-    span + span {
-        color : ${palette.gray[4]};
-        padding-left : 0.25rem;
-        padding-right : 0.25rem;
-        content : '\\B7';
-    }
-`;
-
-const Tags = styled.div`
-    margin-top : 0.5rem;
-    .tag {
-        display : inline-block;
-        color : ${palette.cyan[7]};
-        text-decoration : none;
-        margin-right : 0.5rem;
-        &:hover {
-            color : ${palette.cyan[6]};
-        }
-    }
-`;
-
-
 const PostItem = () => {
     return (
         <PostItemBlock>
             <h2>제목</h2>
-            <SubInfo>
-                <span>
-                    <b>USERNAME</b>
-                </span>
-                <span>{new Date().toLocaleDateString()}</span>
-            </SubInfo>
-            <Tags>
-                <div className='tag'>#태그1</div>
-            </Tags>
+            <SubInfo username="Hello" publishDate='2010'></SubInfo>
+            <Tags tags={["1", "2"]}/>
             <p>포스트 일부분...</p>
         </PostItemBlock>
     );
