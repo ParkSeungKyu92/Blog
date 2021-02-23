@@ -50,7 +50,7 @@ const PostItem = ({post}) => {
     return (
         <PostItemBlock>
             <h2>
-                <Link to={`/@${post.user.username}/${post.user._id}`}>
+                <Link to={`/@${post.user.username}/${post._id}`}>
                     {post.title}
                 </Link>
             </h2>
@@ -79,7 +79,7 @@ const PostList = ({ posts, error, loading, showWriteButton }) => {
             <div>
             {
                 !loading && posts &&
-                (posts.map((post) => (<PostItem key={post.user._id} post={post}></PostItem>)))
+                (posts.map((post) => (<PostItem key={post._id} post={post}></PostItem>)))
             }
             </div>
         </PostListBlock>
