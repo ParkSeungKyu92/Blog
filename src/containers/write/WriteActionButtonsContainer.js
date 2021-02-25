@@ -4,20 +4,25 @@ import { withRouter } from 'react-router-dom';
 import Editor from '../../components/write/Editor';
 import TagBox from '../../components/write/TagBox';
 import WriteActionButtons from '../../components/write/WriteActionButtons';
-import { initialize, changeField, writePost } from '../../modules/write';
+import { initialize, changeField, writePost, updatePost } from '../../modules/write';
 
 
 const WriteActionButtonsContainer = ({ history }) => {
     const dispatch = useDispatch();
-    const { title, body, tags, post, postError } = useSelector(({write}) => ({
+    const { title, body, tags, post, postError, originalPostId } = useSelector(({write}) => ({
         title : write.title,
         body : write.body,
         tags : write.tags,
         post : write.post,
-        postError : write.postError
+        postError : write.postError,
+        originalPostId : write.originalPostId
     }));
 
     const onPublish = () => {
+        if (originalPostId) {
+            dispatch(updatePost({title, body, tags, id : originalPostId}));
+            return;
+        }
         dispatch(writePost({title, body, tags}));
     }
 
@@ -36,7 +41,7 @@ const WriteActionButtonsContainer = ({ history }) => {
     }, [post, postError]);
 
     return (
-        <WriteActionButtons onPublish={onPublish} onCancel={onCancel}></WriteActionButtons>
+        <WriteActionButtons onPublish={onPublish} onCancel={onCancel} isEdit={!!originalPostId}></WriteActionButtons>
     );
 }
 
